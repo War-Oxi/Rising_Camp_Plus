@@ -35,5 +35,8 @@ public class Customer {
 		this.homeAddress = homeAddress;
 	}
 
-
+	public String toString(){
+		return String.format("name - [%s] home address - [%s] work address - [%s]"
+			, name, homeAddress, workAddress);
+	}
 }

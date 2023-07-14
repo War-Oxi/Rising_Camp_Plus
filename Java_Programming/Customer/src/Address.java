@@ -1,4 +1,4 @@
-public class Address {
+public class  Address {
 	private String line1;
 	private String city;
 	private String zip;
@@ -33,5 +33,7 @@ public class Address {
 		this.zip = zip;
 	}
 
-
+	public String toString(){
+		return line1 + " " + city + " " + zip;
+	}
 }
