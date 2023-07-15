@@ -15,13 +15,6 @@ abstract public class Customer implements Discount{
 		this.discountMethod = discountMethod;
 	}
 
-//	public boolean equals(Object obj) {
-//		if (this == obj) return true;
-//		if (obj == null || getClass() != obj.getClass()) return false;
-//		Customer customer = (Customer) obj;
-//		return Objects.equals(name, customer.name);
-//	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(name);
