@@ -67,17 +67,10 @@ abstract public class Customer implements Discount {
 		return price;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
 	public int getBonus() {
 		return bonus;
 	}
 
-	public void setBonus(int bonus) {
-		this.bonus = bonus;
-	}
 }
 
 
