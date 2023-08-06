@@ -1,19 +1,34 @@
 package com.kkankkandev.rest.webservice.restfulwebservice.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
+import java.util.List;
 
+@Entity(name = "user_details")
 public class User {
+
+	protected User(){}
+	@Id
+	@GeneratedValue
 	@JsonProperty("user-id")
 	private Integer id;
-	@Size(min=2, message = "이름은 최소 2글자 이상이어야 합니다")
-	@JsonProperty("user_name")
+
+	@OneToMany(mappedBy = "user")
+	@JsonIgnore
+	private List<Post> posts;
+	@Size(min = 2, message = "이름은 최소 2글자 이상이어야 합니다")
+//	@JsonProperty("user_name")
 	private String name;
 	@Past(message = "birthDate는 과거의 날짜여야 합니다 ^^ ㅎㅎ 머저껀")
-	@JsonProperty("brith_date")
+//	@JsonProperty("birth_date")
 	private LocalDate birthDate;
 
 	public User(Integer id, String name, LocalDate birthDate) {
@@ -46,8 +61,16 @@ public class User {
 		this.birthDate = birthDate;
 	}
 
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+
 	@Override
-	public String  toString() {
+	public String toString() {
 		return "User{" +
 			"id=" + id +
 			", name='" + name + '\'' +
