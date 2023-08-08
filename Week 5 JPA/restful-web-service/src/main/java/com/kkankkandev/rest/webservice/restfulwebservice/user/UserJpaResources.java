@@ -19,8 +19,8 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RestController
 public class UserJpaResources {
 
-	private UserRepository userRepository;
-	private PostRepository postRepository;
+	private final UserRepository userRepository;
+	private final PostRepository postRepository;
 	public UserJpaResources(UserRepository repository,PostRepository postRepository) {
 		this.userRepository = repository;
 		this.postRepository = postRepository;
@@ -67,6 +67,11 @@ public class UserJpaResources {
 	@DeleteMapping("/jpa/users/{id}")
 	public void deleteUser(@PathVariable int id) {
 		userRepository.deleteById(id);
+	}
+
+	@DeleteMapping("jpa/users/{user_id}/{post_id}")
+	public void deletePostForUser(@PathVariable int post_id) {
+		postRepository.deleteById(post_id);
 	}
 
 	@PostMapping("/jpa/users/{id}/posts")
